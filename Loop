@@ -1,0 +1,37 @@
+// Online C# Editor for free
+// Write, Edit and Run your C# code using C# Online Compiler
+//2024.9.25 c# programming
+//Loop 
+using System;
+
+public class Loop
+{
+    public static void Main(string[] args)
+    {
+        Console.WriteLine("please enter a numeber:");
+        int num=Convert.ToInt32(Console.ReadLine());
+        //int num_2=Convert.ToInt32(Console.ReadLine());
+        //int num = 12;
+        int sum=0; //save time
+        for (int i = 1; i <= num; i++)
+        {
+            if (num % i == 0)
+            {
+                if (i % 2 == 1)
+                {
+                    Console.WriteLine($"elements {i}");
+                    sum = sum + i;
+                }
+               
+                 
+            }
+            //Console.WriteLine();
+        }
+        Console.WriteLine($"The sum of divisors for {num} is: {sum}");
+
+        //for(int j = 1; j <= num_2; j++)
+        //{
+        //    Console.WriteLine(j);
+        //}
+    }
+}
