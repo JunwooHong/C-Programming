@@ -1,0 +1,64 @@
+namespace _2024._9._26_Programming_Lecture
+{
+    internal class Program
+    {/*
+        static void Main(string[] args)
+        {
+            int n;
+            int d = 0;
+            bool exists;
+
+            Console.Write("n= ");
+            int.TryParse(Console.ReadLine(), out n);
+
+            int i = 2;
+            while (i < 2 && n % i != 0)
+            {
+                i = i + 1;
+            }
+            exists = i < n;
+            if (exists)
+            {
+                d = i;
+            }
+
+            if (exists)
+            {
+                Console.WriteLine("d ={0}", d);
+            }
+            else
+            {
+                Console.WriteLine("No divisor");
+            }
+                
+        }
+    */
+
+        struct TPoint
+        {
+            public double x, y;
+        }
+        static void Main(string[] args)
+        {
+            // 1. declaration
+            //double x, y;
+            TPoint p;
+            int sn = 0;
+            // 2. reading in
+            Console.Write("x = ");
+            double.TryParse(Console.ReadLine(), out p.x);
+            Console.Write("y = ");
+            double.TryParse(Console.ReadLine(), out p.y);
+            // 3. solution
+            if (p.x >= 0 && p.y >= 0) { sn = 1; }
+            else if (p.x < 0 && p.y >= 0) { sn = 2; }
+            else if (p.x < 0 && p.y < 0) { sn = 3; }
+            else if (p.x >= 0 && p.y < 0) { sn = 4; }
+            // 4. writing out
+            Console.WriteLine($"Quadrant = {sn}");
+            
+        }
+
+
+    }
+}
