@@ -1,0 +1,126 @@
+namespace _2024._9._25_Tasks.cs
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {/*
+            //Program 1;###########################
+            Console.Write("Enter the length of the rectangle:");
+            int length=Convert.ToInt32(Console.ReadLine());
+            Console.Write("Enter the width of the rectangle:");
+            int width = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine($"The are of rectangle is {length*width}");
+            Console.WriteLine($"The perimeter of rectangle is {2*(length+width)}");  */
+
+
+            //Program 2################################
+            //----------------------------------------------------
+            //My version
+            /*
+            Console.Write("Enter two integers:");
+            int Num_1=Convert.ToInt32(Console.ReadLine());
+            int Num_2=Convert.ToInt32(Console.ReadLine());
+            if (Num_1 > Num_2)
+                Console.WriteLine($"The lager number is {Num_1}.");
+            else
+                Console.WriteLine($"The lager number is {Num_2}.");
+            
+            Console.WriteLine();*/
+            //---------------------------------------------------
+            //ChatGPT version
+            /*
+            // Read the entire input as a string
+            string input = Console.ReadLine();
+
+            // Split the input string based on spaces
+            string[] numbers = input.Split(' ');
+
+            // Convert the split strings to integers
+            int Num_1 = Convert.ToInt32(numbers[0]);
+            int Num_2 = Convert.ToInt32(numbers[1]);
+
+            // Compare the numbers and print the larger one
+            if (Num_1 > Num_2)
+                Console.WriteLine($"The larger number is {Num_1}.");
+            else
+                Console.WriteLine($"The larger number is {Num_2}.");
+            */
+            /*
+
+            //Program3 #####################################
+            &Console.Write("Enter two numbers: ");
+            string input=Console.ReadLine();
+            string[] numbers = input.Split(' ');
+
+            int Num_1=Convert.ToInt32(numbers[0]);
+            int Num_2=Convert.ToInt32(numbers[1]);
+
+            if (Num_1 % 2 == 1 || Num_2 % 2 == 1)
+                Console.WriteLine("Yes, there is an odd one.");
+            else
+                Console.WriteLine("None of them is odd.");
+            */
+            /*
+            //Program4 ##############################
+            Console.Write("Enter three words:");
+            string input=Console.ReadLine();
+            string[] words = input.Split(' ');
+
+            string word_1 = words[0];
+            string word_2 = words[1]; 
+            string word_3 = words[2];
+
+           // string longest;
+
+            if (word_1.Length >= word_2.Length && word_1.Length >= word_3.Length)
+                Console.Write($"The longest word is {word_1}. ");
+            else if(word_2.Length >= word_3.Length && word_2.Length >= word_1.Length)
+                Console.Write($"The longest word is {word_2}. ");
+            else if(word_3.Length >= word_1.Length && word_3.Length >= word_2.Length)
+                Console.Write($"The longest word is {word_3}. ");
+
+            ////Console.Write($"The longest word is {longest}. ");*/
+            ///
+
+
+            /*
+
+            //Program 5########################
+            Console.Write("Number of kids:");
+            int N=Convert.ToInt32(Console.ReadLine());
+            Console.Write("Number of apples:");
+            int K=Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine($"Every kid gets {K / N} apples and there are {K % N} apples left");*/
+            /*
+            //Program 6 ###################################
+            Console.Write("Enter the base of the triangle:");
+            int base_ = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Enter the height of the triangle:");
+            int height = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine($"The are of the triangle is (0.5x {base_}x{height})={0.5 * base_ * height}");*/
+            /*
+            //Program 7################################
+            Console.Write("Enter three phrases:\"");
+            string input = Console.ReadLine();
+            string[] words = input.Split('"');
+
+            string word_1 = words[0];
+            string word_2 = words[1];
+            string word_3 = words[2];
+           
+            
+            if (word_1.Length >= word_2.Length && word_1.Length >= word_3.Length)
+                Console.Write($"The longest word is {word_1}. ");
+            else if (word_2.Length >= word_3.Length && word_2.Length >= word_1.Length)
+                Console.Write($"The longest word is {word_2}. ");
+            else if (word_3.Length >= word_1.Length && word_3.Length >= word_2.Length)
+                Console.Write($"The longest word is {word_3}. ");*/
+
+            
+
+        }
+    }
+}
