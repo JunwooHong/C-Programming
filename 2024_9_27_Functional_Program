@@ -1,0 +1,286 @@
+-- Hello world!
+greeting :: String -> String -> String
+greeting a b = a ++ b
+
+--main = print( greeting "hello"  " world!" ) -- "hello world!"
+
+
+---------------------------------------------------------------------------------------
+---- Convert digit to string
+-- Convert an integer from 0 to 5 into a word, otherwise return "Not less or equal to 5".
+
+digitToString :: Int -> String
+digitToString n
+    | n == 0 = "Zero"
+    | n == 1 = "One"
+    | n == 2 = "Two"
+    | n == 3 = "Three"
+    | n == 4 = "Four"
+    | n == 5 = "Five"
+    | otherwise = "Not less or equal to 5"
+
+--main = print( digitToString 4) -- "Four"
+--main = print( digitToString 8) -- "Not less or equal to 5"
+-- main = print( digitToString (-1)) -- "Not less or equal to 5"
+
+
+---------------------------------------------------------------------------------------
+---- Define a function maxi with two arguments that delivers the maximum of the two.
+
+maxi :: Int -> Int -> Int
+maxi x y
+    | x>y = x
+    | otherwise =y
+
+--main = print( maxi 34 56 ) -- 56
+--------------------------
+-- another way using 'max'
+{-ff :: Int->Int->Int
+ff a b = max a b
+main= print(ff 10 20)-}
+---------------------------------------------------------------------------------------
+---- Compute the cube of a number.
+cube :: Int -> Int
+cube x = x^3
+
+--main = print( cube 4 )  -- 64
+-- main = print( cube 8  ) -- 512
+
+---------------------------------------------------------------------------------------
+---- Check if a number is the sum of two other given numbers in any order.
+issum :: Int -> Int -> Int -> Bool
+issum a b c = ( a + b ==c)||(a+c==b)||(b+c==a)
+
+--main = print( issum 10 6 3 )  -- False
+--main = print( issum 10 6 4 )  -- True
+
+---------------------------------------------------------------------------------------
+---- Check if a number is odd. -- odd or even
+isoddnr :: Int -> Bool
+--isoddnr x = (x `rem` 2 == 1)
+--isoddnr x = (x `mod` 2 == 1)
+isoddnr x = odd x
+-- even
+
+--main = print(isoddnr 5) -- True
+-- main = print(isoddnr 6) -- False
+
+---------------------------------------------------------------------------------------
+---- Check if a number is multiple of 10.
+ismult10 :: Int -> Bool
+ismult10 x = x `rem` 10 == 0
+
+
+--main = print( ismult10 20 ) -- True
+-- main = print( ismult10 201 ) -- False
+
+---------------------------------------------------------------------------------------
+---- Write a function which returns true if a is divisible by b. 
+divBy :: Int -> Int -> Bool
+divBy a 0 = error "Division by 0" 
+divBy a b = a `rem` b == 0 -- or mod
+
+--main = print (divBy 10 2) -- True
+--main = print (divBy 10 0) -- False
+-- main = print (divBy 10 0) -- "Dvision by 0"
+
+-- Difference between mod and rem
+-- (-7) mod 3 returns 2 because the result takes the sign of the divisor (3), which is positive.
+-- (-7) rem 3 returns -1 because the result takes the sign of the dividend (-7), which is negative.
+
+---------------------------------------------------------------------------------------
+---- Write a function which returns true if a is divisible by b or vice versa. Fill in the blanks
+divAny :: Int -> Int -> Bool
+divAny a b = (a `rem` b == 0) || (b `rem` a == 0)
+
+---------------------------------------------------------------------------------------
+---- Given three integer numbers a, b and c, check if both a and b have the same remainder when divided by c.
+sameRem :: Int -> Int -> Int -> Bool
+sameRem a b c = a `mod` c == mod b c -- write different versions
+
+--main = print( sameRem 12 4 4) -- True
+-- main = print( sameRem 12 4 3) -- False
+-- main = print( sameRem 13 4 3) -- True
+
+---------------------------------------------------------------------------------------
+---- Given two integers and a boolean value, check if the first integer is even, the second divisible by 13 and the boolean value is True.
+-- Fill in the missing boolean operators.
+
+check :: Int -> Int -> Bool -> Bool
+check a b c = mod a 2 == 0 && (b `mod` 13 == 0) && c -- or even a
+--check a b c = even a == 0 && mod b 13 == 0 && c 
+--main = print( check 4 26 True) -- True
+-- main = print( check 5 26 True) -- False
+-- main = print( check 5 23 True) -- False
+
+--Recursion is a function that calls itself. We are trying to break questions into small parts.
+---------------------------------------------------------------------------------------
+---- Write a function that takes two arguments, say n and x, and computes their power,
+-- in 2 versions - with recursion and without recursion.
+power :: Int -> Int -> Int
+power x n
+    | n < 0 = error "negative number"
+    | otherwise = x^n
+
+-- main = print( power 2 5 ) -- 32
+
+powerrec  :: Int -> Int -> Int
+powerrec x n
+    | n < 0 = error "no negative numbers"
+    | n == 0 = 1
+    | otherwise = x * powerrec x (n-1)
+
+-- main = print( powerrec 2 0) --  1
+-- main = print( powerrec 2 4 ) -- 16
+
+---------------------------------------------------------------------------------------
+---- Write a function which calculates the sum of the digits of a number.
+
+bdigitSum :: Int -> Int
+bdigitSum number 
+    | number < 10 = number
+    | otherwise = number `rem` 10 + ( bdigitSum (number `div` 10))
+
+
+--main = print(bdigitSum 1234) -- 10
+--main= print(bdigitSum 12)--3
+---------------------------------------------------------------------------------------
+---- Write a function multiplyUntilOne that takes an integer n and returns the result of multiplying 
+-- n by itself n times, then decreasing n by 1 after each multiplication until n reaches 1.
+
+sumpowers :: Int -> Int
+sumpowers n
+    | n < 0 = error "Negative number"
+    | n==1 =1
+    | otherwise = n ^ n + sumpowers(n -1)
+
+--main = print(sumpowers 5) -- 3413
+--main = print(sumpowers (-34)) -- Negative number
+--main = print(sumpowers 9) -- 405071317
+
+---------------------------------------------------------------------------------------
+---- Sum of squares
+-- Compute the sum of the squares of numbers from 1 to n.
+
+squareSum :: Int -> Int
+
+squareSum 1 = 1 
+squareSum n=n^2+squareSum(n-1)
+
+
+-- Examples
+--main = print(squareSum 5) -- 55
+-- main = print(squareSum 0) -- 0
+-- main = print(squareSum 100) -- 338350
+
+---------------------------------------------------------------------------------------
+---- Given a positive integer, find the sum of the odd numbers up to that number starting from 1.
+
+sumOdd :: Int -> Int
+sumOdd 1 =1
+sumOdd n
+    | n < 0 = error"Negative"
+    | even n = sumOdd( n-1 )
+    | odd n = n + sumOdd(n-2)
+
+--mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
+--main=print(sumOdd 10)
+-- sumOdd 21 // 121
+-- sumOdd 10 // 25 = 9+7+5+3+1
+-- sumOdd -13 // n has to be positive
+
+---------------------------------------------------------------------------------------
+---- Compute for a given positive n the sum of 2i*(2i+1), for i from 1 to n. E.g. for n=3 the sum is 68.
+
+f :: Int -> Int
+f 0 = 0
+f n = 2*n*(2*n+1) + f(n-1)
+
+-- main = print( f 0 ) -- 0
+-- main = print( f 3 ) -- 68
+
+---------------------------------------------------------------------------------------
+---- Write GetLastPositive function
+-- Returns the number decreased by the last digit if positive, otherwise returns -1.
+
+getLastPositive :: Int -> Int
+getLastPositive n
+    | n <0 = -1
+    | otherwise= n - (n `rem` 10)
+
+--main = print( getLastPositive 5856)   -- 5850  
+--main = print( getLastPositive 689255) -- 689250
+-- main = print( getLastPositive 0)      -- 0
+-- main = print( getLastPositive 8)      -- 0
+main = print( getLastPositive (-8554)) -- -1
+
+
+
+---------------------------------------------------------------------------------------
+---- Average of 5 numbers
+-- Compute the average of 5 numbers.
+
+av5 :: Int -> Int -> Int -> Int -> Int -> Double
+av5 a b c d e = fromIntegral (a + b + c + d + e) / 5.0
+
+--main = print( av5 1 2 3 4 5) -- 3.0
+--main = print(av5 3 5 7 9 10) -- 6.8
+
+---------------------------------------------------------------------------------------
+---- Odd-even operation
+-- Return the product if both numbers are odd, sum if both are even, otherwise return 0.
+
+--oddEven :: Int -> Int -> Int
+
+-- main = print(oddEven 474 8983) -- 0
+-- main = print(oddEven 6 6) -- 12
+-- main = print(oddEven 7 7) -- 49
+
+---------------------------------------------------------------------------------------
+---- Are numbers sorted?
+-- Check if 5 numbers are sorted in increasing order.
+
+--isSorted :: Int -> Int -> Int -> Int -> Int -> Bool
+
+
+-- main = print(isSorted 1 1 1 1 1) -- True
+-- main = print(isSorted 1 2 3 4 5) -- True
+-- main = print(isSorted 4 3 2 1 0) -- False
+
+---------------------------------------------------------------------------------------
+---- Transform days into years, weeks, and days.
+-- Convert the number of days into a string of years, weeks, and days.
+
+transform :: Int -> String
+transform days = show years ++ " year " ++ show weeks ++ " week " ++ show remainingDays ++ " days"
+  where
+    years = days `div` 365
+    weeks = (days `mod` 365) `div` 7
+    remainingDays = (days `mod` 365) `mod` 7
+
+-- main = print(transform 375) -- "1 year 1 week 3 days"
+-- main = print(transform 365) -- "1 year 0 week 0 days"
+-- main = print(transform 1050) -- "2 year 45 week 5 days"
+-- main = print(transform 2500) -- "6 year 44 week 2 days"
+
+---------------------------------------------------------------------------------------
+---- Armstrong number
+--  If sum of cubes of each digit of the number is equal to the number itself, then the number is called an   Armstrong number.
+--  153 = 1^3 + 5^3 + 3^3
+--  Given a positive integer number, write a function to determine whether it is an Armstrong number or not.
+
+toDigit :: Int -> Int
+toDigit x 
+    | x < 10 = x^3
+    | otherwise = toDigit(x `div` 10) + (x `rem` 10)^3 
+
+
+armstrong :: Int -> Bool
+armstrong x
+    | x == toDigit x = True
+    | otherwise = False
+
+-- main = print( armstrong 153) -- True
+-- main = print( armstrong 370) -- True
+-- main = print( armstrong 0) -- True
+-- main = print( armstrong 12) -- False
