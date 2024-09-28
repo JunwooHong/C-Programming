@@ -1,0 +1,154 @@
+-- 1. Given a year, determine if the year is a leap year or not
+-- A year is a leap year if it is divisible by 4 but not divisible by 100.
+-- But a year can be a leap year if it is divisible by 400 (eventhough it is divisible by 100).
+
+
+
+isLeapYear :: Int -> Bool
+isLeapYear x
+    | x<=0 = error"Enter correct Year."
+    | (x `rem` 4 ==0) && (x `rem` 100 /=0) = True
+    | x `rem` 400 ==0 = True
+    | otherwise = False
+
+
+
+-- main = print(isLeapYear 1900) -- False
+-- main = print(isLeapYear 1997) -- False
+-- main = print(isLeapYear 1996) -- True
+-- main = print(isLeapYear 2000) -- True
+
+
+---------------------------------------------------------------------------
+--2
+-- Write a function that takes two integers x and n and returns the sum
+-- x^2 + x^4 + ... + x^(2*n)
+
+-- example: 
+-- n=3, x=2
+-- 2^2 + 2^4 + 2^6 = 4+16+64 = 84
+
+
+
+
+sums :: Int -> Int -> Int
+sums x n
+    -- | n <0 = error"Enter n again"
+    | n==0 = 0
+    | otherwise= x^(2*n)+sums x (n-1) 
+
+
+--main = print(sums  2 3) -- 84
+--main = print(sums  2 4) -- 340
+--main = print(sums  5 0) -- 0
+--main = print(sums 3 3) -- 819
+
+
+
+-----------------------------------------------------------------------
+--3
+-- Write a function that takes two integers x and n and returns the sum
+-- x + x^3 + x^5 + x^7 + ... + x^(2*n-1)
+
+-- example: 
+-- n=3, x=2
+-- 2 + 2^3 + 2^5 = 42
+
+
+
+sums1 :: Int -> Int -> Int
+sums1 x n
+    | n == 0 =0
+    | otherwise= x^(2*n-1) + sums1 x (n-1)
+
+
+
+-- main = print(sums1 2 3) -- 42
+-- main = print(sums1 4 3) -- 1092
+-- main = print(sums1 5 0) -- 0
+-- main = print(sums1 5 3) -- 3255
+
+
+------------------------------------------------------------------------
+
+
+
+
+
+
+--4
+--  Theres a football match in Budapest and you are the software engineer of the stadium.
+--  Every ticket has a code and the code is a number.
+--  some tickets are VIP tickets and some are normal tickets.
+--  Make a program for the volunteers so that they can check if the ticket is VIP or not and assign 
+--  seats accordingly.
+---------------------------------------
+--  the ticket code is a 6 digit number 
+--  if the code is even and the sum of its digits is odd then the ticket is "VIP" else it is "Normal"
+
+--  Make a function that takes a ticket code and returns "VIP" if the ticket is VIP and "Normal" if it is not.
+--  example 
+--   Input : 123456
+--  123456 is even , the sum of the digits is 21 , 21 is odd so the ticket is VIP
+--  so output : "VIP"
+
+-- Hint
+-- you can create helper function "sumDigits" which counts the sum of a number and call it from the main function
+
+
+
+
+ticketType :: Int -> String
+ticketType number 
+    | (number > 999999) || (number <100000) = error "Enter your ticket correctly (6 digit)"
+-- Here I know it's not good. For example someone's ticket is 000872 then it will be a bug.. But now Idk how to fix it.
+    | (number `rem` 2 == 0) && ((sumDigits number) `rem` 2 ==1)  = "VIP"
+    | otherwise="Normal" 
+
+sumDigits :: Int -> Int -- helper function
+sumDigits 0=0
+sumDigits number= number `rem` 10 + sumDigits (number `div` 10)
+
+
+-- main = print(ticketType 123456) -- "VIP"
+-- main = print(ticketType 224388) -- "VIP"
+-- main = print(ticketType 118822) -- "Normal"
+
+----------------------------------------------------------------------------
+
+--5
+--  A positive integer named 'n' is given and if it is even, then divide by 2 (n `div` 2), if it is odd, then 3n+1.
+-- 	Repeat this process by recursion until the value reaches to 1.
+-- 	Write a function that calculates how many steps went through ODD Number in this process for an integer number given.
+-- 	For ex: 
+-- 	the given integer is 6: 
+-- 		as it is even, divide by 2 -> 
+-- 		1. 6/2 = 3 		-> 1
+-- 		2. (3*3)+1 = 10 -> 0
+-- 		3. 10/2 = 5 	-> 1
+-- 		4. (5*3)+1 = 16 -> 0
+-- 		5. 16/2 = 8 	-> 0
+-- 		6. 8/2 = 4 		-> 0
+-- 		7. 4/2 = 2 		-> 0
+-- 		8. 2/2 = 1 		-> 0
+-- 		total 8 steps, but only 2 steps went through the odd number, so the function should return 2.	
+
+
+
+
+
+collatzConjunctureOdd :: Int -> Int
+collatzConjunctureOdd n
+    | n <=0 = error" Enter positive interger"
+    | n==1=0
+    | even n = collatzConjunctureOdd  (n`div`2)
+    | otherwise= 1+ collatzConjunctureOdd( 3*n+1)
+
+
+
+-- main = print(collatzConjunctureOdd 6)-- 2
+main = print(collatzConjunctureOdd 27)-- 41
+-- main = print(collatzConjunctureOdd 9)-- 6
+-- main = print(collatzConjunctureOdd 97)-- 43
+
+
