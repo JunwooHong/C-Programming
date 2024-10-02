@@ -1,0 +1,84 @@
+/*using System;
+
+class Program
+{
+    // 定义一个函数，用于计算数组中所有偶数的和
+    public static int SumOfEvenNumbers(int[] numbers)
+    {
+        int sum = 0;  // 用于存储偶数的和
+
+        // 遍历数组
+        foreach (int number in numbers)
+        {
+            // 如果是偶数，加入到sum中
+            if (number % 2 == 0)
+            {
+                sum += number;
+            }
+        }
+
+        return sum;  // 返回偶数的和
+    }
+
+    static void Main(string[] args)
+    {
+        // 测试数据
+        int[] numbers = { 1, 2, 3, 4, 5, 6 };
+
+        // 调用函数，计算偶数的和
+        int result = SumOfEvenNumbers(numbers);
+
+        // 输出结果
+        Console.WriteLine("Sum of even numbers" + result);
+    }
+}*/
+
+using System;
+
+class Program
+{
+    // 定义一个函数，判断字符串是否为回文串
+    public static bool IsPalindrome(string input)
+    {
+        // 去掉字符串中的空格，并将其转换为小写，确保判断不区分大小写
+        input = input.Replace(" ", "").ToLower();
+
+        // 定义两个指针，一个从字符串开头，一个从字符串结尾
+        int start = 0;
+        int end = input.Length - 1;
+
+        // 循环判断字符串中的字符
+        while (start < end)
+        {
+            // 如果发现不相等的字符，则不是回文串
+            if (input[start] != input[end])
+            {
+                return false;
+            }
+
+            // 移动指针
+            start++;
+            end--;
+        }
+
+        // 如果所有字符都相等，则是回文串
+        return true;
+    }
+
+    static void Main(string[] args)
+    {
+        // 输入字符串
+        Console.WriteLine("请输入一个字符串：");
+        string input = Console.ReadLine();
+
+        // 判断是否为回文串
+        if (IsPalindrome(input))
+        {
+            Console.WriteLine("该字符串是回文串。");
+        }
+        else
+        {
+            Console.WriteLine("该字符串不是回文串。");
+        }
+    }
+}
