@@ -1,0 +1,107 @@
+using System.Net.Http.Headers;
+
+namespace ConsoleApp2
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            //Console.WriteLine("Hello, World!");
+
+            //Array Declaration - one diminisional Array
+
+            //int[] nums;
+
+            ////Init.
+            //nums = new int[5];
+
+            ////setup init. values
+            //nums = new int[] { 4, 78, 12, 6, 0 };
+            //The minimam value is 0;
+            //The maximam value for index is (Length -1) or (size of array -1)
+            
+            //int[] nums = new int[5] { 4, 78, 12, 6, 0 };
+            int[] nums ={ 4, 78, 12, 6, 0 };//one line array declaration , init,and setup
+
+            Console.WriteLine(nums[3]);
+            //Console.WriteLine(nums[5]);//Error
+            nums[4] = 20;
+            //Change elements
+
+            for (int i = 0; i < nums.Length; i++)
+                Console.Write($"{nums[i],5}");
+
+            Console.WriteLine();
+
+            // Two Diminsional Array
+            //Declaration
+
+            int[,] matrix;
+            //Init.
+            matrix = new int[3, 4];
+
+            //Giving init. value for element of the array
+            matrix = new int[,] {
+                                  {7,45,3,2},
+                                  {0,6,-1,23},
+                                  {3,21,5,78}
+
+                                 };
+
+            int[,] matrix1= {                           //One statement for two diminstion array Declaretion,init. and setuping
+                                  {7,45,3,2},
+                                  {0,6,-1,23},
+                                  {3,21,5,78}
+                            };
+
+
+            Console.WriteLine(matrix1[1,2]);
+            matrix1[2, 0] = 33;
+
+            for(int i=0; i < matrix1.GetLength(0); i++) // 0 for line
+            {
+                Console.Write($"The elements for the row number {i + 1} are:");
+                for(int j=0;j<matrix1.GetLength(1); j++)//1 for each line how many exactly numbers
+                    Console.Write($"{matrix1[i,j],5}");
+                Console.WriteLine();
+            }
+
+
+
+
+            Console.WriteLine("===================Jagged Array==================");
+            //Jagged Array allow have different rows
+            //Declaration 
+            int[][] JaggedArray;
+
+            //init.
+            JaggedArray = new int[3][];// second one can be any numbers
+
+            //Setuping init. valus;
+            JaggedArray = new int[][]
+            {
+                new int[] {5,6,12,9,0,3,2},
+                new int[] {8,10 },
+                new int[] {7}
+            };
+
+            Console.WriteLine(JaggedArray[1][1]);
+
+            Console.WriteLine(JaggedArray[1][0]=20);
+            Console.WriteLine("The elements of Jagged array are:");
+            for (int i = 0; i < JaggedArray.Length; i++)
+            {
+                
+                for (int j=0;j<JaggedArray[i].Length;j++)
+                    Console.Write($"{JaggedArray[i][j],5}");
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+
+
+
+
+
+        }
+    }
+}
