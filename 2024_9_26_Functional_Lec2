@@ -1,0 +1,341 @@
+main :: IO ()
+
+--main = putStrLn "Hello World!"
+
+
+absolute0 x = if (x<0) then (-x) else x
+
+--main = print (absolute0 (-4))
+
+
+--two guards
+absolute1 :: Int -> Int
+absolute1 x
+ | x<0 = -x
+ | otherwise = x
+
+--main = print (absolute1 (-4))  --4
+
+
+--more then two guards
+signof :: Int -> Int
+signof x
+ | x>0 = 1
+ | x==0 = 0
+ | x<0 = -1
+ 
+--main =  print (signof (-8))   -- -1
+
+-- Numerical Recursive Functions
+
+factorial :: Int -> Int
+factorial n
+ | n == 0 = 1
+ | n>0 = n * factorial (n-1)
+
+--main = print (factorial 4)  --24
+
+{- factorial 4 =
+  4 * factorial (4 - 1) =
+  4 * factorial 3 =
+  4 * (3 * factorial (3 - 1)) =
+  4 * (3 * factorial 2) =
+  4 * (3 * (2 * factorial (2 - 1))) =
+  4 * (3 * (2 * factorial 1)) =
+  4 * (3 * (2 * (1 * factorial (1 - 1)))) =
+  4 * (3 * (2 * (1 * factorial 0))) =
+  4 * (3 * (2 * (1 * 1))) =
+  24
+-}
+
+
+power :: Int -> Int -> Int
+power x n
+ | n == 0 = 1
+ | n>0 = x * power x (n-1)
+
+--main = print (power 2 3)   -- 8
+
+{-2³ = 2^3 = power 2 3 = 
+  2 * power 2 (3 - 1) =
+  2 * power 2 2 =
+  2 * 2 * power 2 (2 - 1) =
+  2 * 2 * power 2 1 =
+  2 * 2 * 2 * power 2 (1 - 1) =
+  2 * 2 * 2 * power 2 0 =
+  2 * 2 * 2 * 1 =
+  8
+-}
+
+power2 :: Int -> Int -> Int
+power2 x y = x^y
+
+--main = print (power2 2 3)   -- 8
+
+
+
+{-  Lists
+--data structures - store and manipulate collections of data
+--list - sequence of elements of the same type elements
+--the elements of a list can be of any type
+--they are written between [ ] brackets
+--coma separates the elements
+--considered recursive data type
+
+
+-- collection of same type elements: lists  vs arrays
+-- lists are regarded as linked lists - a chain of boxes referring to each other
+-- empty list is []
+-- every list has a type, the type of the contained elements
+-- no restrictions on the number of elements
+-- singleton list with one element [False], [[1,2,3]]
+-- special constructor is 1:[2,3,4] is equivalent to [1,2,3,4]
+-- [1,2,3] is equivalent to 1:2:3:[]
+-- 1 : 2 : 3 : [] == 1 : (2 : (3 : [])) == [1, 2, 3]
+-- examples
+-}
+
+l1 :: [Int]
+l1 = [1, 2, 3, 4, 5]
+
+--main = print l1  -- [1,2,3,4,5]
+
+l2 :: [Bool]
+l2 = [True, False, True]
+
+--main = print l2  -- [True,False,True]
+
+l3 :: [Float]
+l3 = [sin 3.14, cos 3.14, sin 3.14]
+
+--main = print l3   -- [1.592548e-3,-0.99999875,1.592548e-3]
+
+l4 :: [[Int]]  -- list of lists
+l4 = [[1, 2, 3], [8, 9]]
+
+--main = print l4 --[[1,2,3],[8,9]]
+
+l5 :: [a]    -- empty is of any type, it infers from the context the type of it
+l5 = []
+
+--main = print (l5::[Int])  --[]
+
+l6 :: [Int]
+l6 = [1..10]
+
+--main = print l6  -- [1,2,3,4,5,6,7,8,9,10]
+
+l7 :: [Int]
+l7 = [1..]
+
+--main = print l7  -- [1,2,3,4..] infinite list
+
+
+-- Dot-dot generator
+
+--main = print [1..10]       -- [1,2,3,4,5,6,7,8,9,10]
+--main = print [1,2..10]     -- [1,2,3,4,5,6,7,8,9,10]
+--main = print [1,0.. -10]   -- [1,0,-1,-2,-3,-4,-5,-6,-7,-8,-9,-10]
+--main = print [1.. -10]     -- []
+--main = print [1..0]        -- []
+--main = print [1..1]        -- [1]
+--main = print [1,3..4]      -- [1,3]
+--main = print [10..]        -- [10,11,12,13,14,15,16,17..] and so on, infinite
+--main = print [1,3..]       -- [1,3,5,7,8,11,13..] infinite odd numbers
+--main = print [100,80..]    -- [100,80,60,40,20,0,-20,-40..] infinite every -20th
+
+
+--The elements need not be constants, may be determined by computation
+--the used expressions must be of the same type
+
+l8 :: [Int]
+l8 = [1+5, 2*10, length [1 ,2 ,3 ,4 ,5]] 
+--main = print l8    -- [6,20,5]
+
+
+l9 :: [Bool]
+a = True
+b = False
+x = 100
+l9 =[5<10, x == 8, a && b]
+--main = print l9  --[True,False,False]
+
+
+-- Basic functions, LEARN THEM !!!
+
+--main = print (head [1, 2, 3, 4, 5] )    -- 1 first element of the list
+--main = print (tail [1, 2, 3, 4, 5] )  -- [2,3,4,5] everything except first element as a list
+--main = print (drop 2 [1, 2, 3, 4, 5] ) -- [3,4,5] delete first n elements
+--main = print (take 2 [1, 2, 3, 4, 5] ) -- [1,2] take first n elements
+--main = print ([1, 2, 3] ++ [6, 7] )  -- [1,2,3,6,7] concatenation, appends the second to the first
+--main = print (reverse [1, 2, 3])  -- [3,2,1] reverses a list
+--main = print (length [1, 2, 3, 4] )   -- 4 number of elements
+--main = print (last [1, 2, 3])   -- 3 last list element     
+--main = print (init [1, 2, 3])  -- [1,2] all except the last          
+--main = print ( elem 2 [1, 2, 3] ) -- True, check membership
+--main = print ( elem 5 [1, 2, 3]) -- False
+--main = print (concat [[1,2], [3, 4, 5], [6, 7]] ) -- [1,2,3,4,5,6,7] flattens a list of lists
+
+
+-- More tests
+
+--main = print (take 2 ([]::[Int]))   -- [] empty, it can not take any from []   -- not working without extra specification for empty list    
+--main = print (drop 5 [1,2,3])  -- [] empty, it can not drop 5 out of 3       
+--main = print (take 2 [1 .. 10])  -- [1,2]       
+--main = print (drop ([1..5]!!2) [1..5]) -- [4,5] the !! is list index (subscript) operator, starting from 0, shows n+1-th element
+
+--main = print (reverse [1,3..10])  -- [9,7,5,3,1]         
+--main = print (reverse [5,4 .. -5])  -- [-5,-4,-3,-2,-1,0,1,2,3,4,5]      
+--main = print (elem 0 [])  -- False             
+--main = print (elem (-1) [1..10])     -- False     
+--main = print (elem ([1..5]!!1) [1..5])  -- True, extracts an element and checks if is member -> true
+
+
+
+-- Lets look into some of the built-in functions
+-- rewriting built-in functions, names should not overlap
+head1 :: [Int] -> Int
+head1 (x : y) = x
+
+--main = print (head1 [1..5]) -- 1
+
+tail1 :: [Int] -> [Int]
+tail1 (x : y) = y
+
+--main = print (tail1 [1..5]) -- [2,3,4,5]
+
+
+take1 :: Int -> [a] -> [a]
+take1 n [] = []
+take1 n (x : xs)
+ | n < 1 = []
+ | otherwise = x : take1 (n-1) xs
+
+--main = print (take1 2 [1..5]) -- [1,2]
+--main = print (take1 2 [1 .. 10]) -- [1,2]
+--main = print (take1 7 [1..5]) -- [1,2,3,4,5]
+
+{-
+take1 2 [1..5]   
+n = 2 x = 1 xs = [2 ,3 ,4 ,5]     1 : take1 1 [2,3,4,5]
+n = 1 x = 2 xs = [3 ,4 ,5]        1 : 2 : take1 0 [3,4,5]
+n = 0 < 1                         1 : 2 : [ ] = [1,2]
+-}
+
+
+drop1 :: Int -> [a] -> [a]
+drop1 n [] = []
+drop1 n ( x : xs)
+ | n < 1 = ( x : xs)
+ | otherwise = drop1 (n-1) xs
+
+--main = print (drop1 5 [1,2,3]) -- []
+--main = print (drop1 ([1..5]!!2) [1..5]) -- [4,5]
+--main = print (drop1 0 [1..5])  -- [1,2,3,4,5]
+
+{- drop1 2 [1..5]
+n = 2 x = 1 xs = [2,3,4,5]     drop1 1 [2 ,3 ,4 ,5]
+n = 1 x = 2 xs = [3 ,4 ,5]     drop1 0 [3 ,4 ,5]
+n = 0 < 1                      [3 ,4 ,5]
+-}
+
+
+-- in comparison
+{-
+take1 :: Int -> [a] -> [a]
+take1 n [] = []    --for [] result is []
+take1 n (x : xs)   
+ | n < 1 = []      --stops with empty
+ | otherwise = x : take1 (n-1) xs  --collects heads
+
+drop1 :: Int -> [a] -> [a]
+drop1 n [] = []    --for [] result is []
+drop1 n ( x : xs)
+ | n < 1 = ( x : xs)  --returns last recursion step's input
+ | otherwise = drop (n-1) xs -- ignores heads
+ -}
+
+
+reverse1 :: [a] -> [a]
+reverse1 [] = []
+reverse1 (x : xs) = reverse1 xs ++ [ x ]
+
+--main = print (reverse1 [1 ,3..10]) -- [9,7,5,3,1]
+--main = print (reverse1 []:: [Int]) -- []
+--main = print (reverse1 [5 ,4 .. -5]) -- [-5,-4,-3,-2,-1,0,1,2,3,4,5]
+
+{-
+reverse [1..3]
+(reverse [2 ,3]) ++ [1]
+(reverse [3] ) ++ [2] ++ [1]
+(reverse [] ) ++ [3] ++ [2] ++ [1]
+[] ++ [3] ++ [2] ++ [1] = [3 ,2 ,1]
+-}
+
+-- some more list patterns
+-- the input is expected in a set format = pattern 
+triplesum :: [Int] -> Int
+triplesum [x, y, z] = x + y + z
+
+--main = print (triplesum [1,2,4])  -- 7  
+--main = print (triplesum [1,2,3,4])  -- error, Non-exhaustive patterns in function triplesum
+
+-- omitting values
+f :: Int -> Int -> Int
+f _ x = x
+--main = print (f 4 5) -- 5
+
+
+-- patterns with list constructor - a list with min 2 elements
+
+g :: [Int] -> Int
+g (x:y:z)  = x + y  
+
+--main = print ( g [1, 2, 3, 4, 5]) -- 3
+
+
+-- patterns + recursively applied functions
+
+lastof [ x ] = x   -- not defined for []
+lastof ( x : y ) = lastof y
+
+--main = print (lastof [1..10]) -- 10
+
+
+-- recursive functions on lists - calling built-in functions
+-- sum buil-in to sum up all the elements of a list
+
+sum1 :: [Int] -> Int
+sum1 x
+  | x == [] = 0
+  | otherwise = head x + sum1 (tail x)
+
+-- recursive functions on lists - using [head : tail] pattern
+
+
+sum2 :: [Int] -> Int
+sum2 [] = 0
+sum2 (first : rest) = first + sum2 rest
+--main =  print (sum1 [1..5]) -- 15 the same for sum2
+
+-- recursive function with any element pattern
+
+length1 [] = 0
+length1 (_ : rest) = 1 + length1 rest
+
+main =  print (length1 [1..10]) -- 10
+
+
+-- warm-up
+{-
+Evaluate the following expressions:
+1. (take 3 [1..10] ) ++ (drop 3 [1..10] )
+2. length (concat [[1 ,2] , [3] , [4 , 5, 6, 7] , [8 , 9]] )
+3. elem (length [1..5] ) [7..10]
+4. [1..5] ++ [0] ++ reverse [1..5]
+
+1. [1 , 2, 3, 4, 5, 6, 7, 8, 9, 10]
+2. 9
+3. False
+4. [1 , 2, 3, 4, 5, 0, 5, 4, 3, 2, 1]
+-}
