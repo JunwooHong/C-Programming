@@ -1,0 +1,28 @@
+{- Progress Task 1 -}
+
+{- Your neptun code : GBQA1V-}
+
+{- 
+    Create a function numberClassification that takes an integer and classifies it based 
+    on the following criteria:
+    If the number is even and greater than 10, return "Large even:" 
+    followed by the number multiplied by 3 as a string.
+    If the number is even and less than or equal to 10, return "Small even:" 
+    followed by the number divided by 2 as a string.
+    If the number is odd, return "Odd number:" followed by the number multiplied by 2 as a string.
+    
+    Hint: to convert Int to String you use "show", for ex:
+        show 10 -> "10"
+-}
+
+numberClassification :: Int -> String
+numberClassification number
+    | even number && number>10 = "Large even:" ++ show (number*3)
+    | even number && number<=10 ="Small even:" ++ show (number `div`2)
+    | odd number ="Odd number:" ++ show (number*2)
+-- Test cases:
+--main = print (numberClassification 12)   -- "Large even:36"   (12 is even and greater than 10)
+--main = print (numberClassification 8)    -- "Small even:4"    (8 is even and small)
+--main = print (numberClassification 3)    -- "Odd number:6"     (3 is odd)
+-- main = print (numberClassification 10)   -- "Small even:5"     (10 is even and small)
+main = print (numberClassification 15)   -- "Odd number:30"    (15 is odd)
