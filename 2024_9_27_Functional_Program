@@ -231,7 +231,10 @@ av5 a b c d e = fromIntegral (a + b + c + d + e) / 5.0
 -- Return the product if both numbers are odd, sum if both are even, otherwise return 0.
 
 --oddEven :: Int -> Int -> Int
-
+-- oddEven a b
+--    | odd a&& odd b = a*b
+--    | even a && even b = a+b
+--    | otherwise = 0
 -- main = print(oddEven 474 8983) -- 0
 -- main = print(oddEven 6 6) -- 12
 -- main = print(oddEven 7 7) -- 49
@@ -241,7 +244,7 @@ av5 a b c d e = fromIntegral (a + b + c + d + e) / 5.0
 -- Check if 5 numbers are sorted in increasing order.
 
 --isSorted :: Int -> Int -> Int -> Int -> Int -> Bool
-
+--isSorted a b c d e = (a <=b) && (b<=c)&&(c<=d)&&(d<=e)
 
 -- main = print(isSorted 1 1 1 1 1) -- True
 -- main = print(isSorted 1 2 3 4 5) -- True
@@ -257,6 +260,7 @@ transform days = show years ++ " year " ++ show weeks ++ " week " ++ show remain
     years = days `div` 365
     weeks = (days `mod` 365) `div` 7
     remainingDays = (days `mod` 365) `mod` 7
+
 
 -- main = print(transform 375) -- "1 year 1 week 3 days"
 -- main = print(transform 365) -- "1 year 0 week 0 days"
