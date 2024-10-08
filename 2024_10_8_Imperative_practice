@@ -1,0 +1,116 @@
+#include <stdio.h>
+#include <stdbool.h>
+int main()
+{
+    // int num=12345000;
+    int num=12345;
+    int result =0;
+
+    while(num !=0)
+    {
+        int lastDigit=num%10;
+        if(lastDigit==0&&result==0)
+            printf("0");
+        result=result*10 + lastDigit;
+        num =num/10;
+    }
+    printf("Reverse:%d\n",result);
+
+    //=====================================//
+    num=12345;
+    int prod=1;
+    while(num != 0)
+    {
+        // prod *=num%10;
+        // num/=10;
+
+        prod=prod * (num%10);
+        num = num/10;
+    }
+    printf("Product:%d\n",prod);
+    //=====================================//
+    num=1234567890;
+    int evens=0;
+    int odds=0;
+
+    while(num !=0)
+    {
+        int Lastdigit= num%10;
+        if(Lastdigit % 2 ==0)
+            evens++;
+        else
+            odds++;
+        num = num/10;
+    }
+    printf("There are %d even and %d odd in this integer number\n",evens,odds);
+    //=====================================//
+    //greatest divosor
+    int a=10;
+    int b=80;
+
+    int i = a <b ? a : b;
+    // if(a<b)
+    //     i=a;
+    // else
+    //     i=b;
+
+
+    while(i>1)
+    {
+        if(a%i==0 && b%i==0)
+            break;
+        --i;
+    }
+
+    printf("%d\n",i);
+
+    //=====================================//
+    // for(int i=1;i<=10;++i)
+    // {
+    //     for(int j=1;j<=10;++j)
+    //         printf("%d\t",i*j);
+        
+    //     printf("\n");
+    // }
+    //=====================================//
+
+    // int size=8;
+    for(int i=0;i<8;i++)
+    {
+        for(int j=0;j<8;j++)
+        {
+            if((i+j)%2==0)
+                printf("[]");
+            else
+                printf("  ");
+
+           
+        } printf("\n");
+    }
+    //=====================================//
+    int num_1;
+    bool isPrime=true;
+    scanf("%d",&num_1);
+
+    if(i<2)
+    {
+        isPrime=false;
+    }
+
+    for(int i=2;i<=num_1/2;i++)
+    {
+        if(num_1%i==0)
+        {
+            // printf("This is not a prime number\n");
+            // return 0;
+            isPrime=false;
+            break;
+        }
+    }
+    if(isPrime)
+        printf("This is a prime\n");
+    else
+        printf("This is not a prime\n");
+
+    //boolen need to have #include <stdbool.h>
+}
