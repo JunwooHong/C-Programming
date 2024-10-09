@@ -1,0 +1,60 @@
+namespace studentCnt
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            //Console.WriteLine("Hello, World!");
+
+            int studentCnt;
+
+            do
+            {
+                Console.WriteLine("Enter the number of students:  ");
+                studentCnt = Convert.ToInt32(Console.ReadLine());
+                if (studentCnt < 1 || studentCnt > 100)
+                    Console.WriteLine("Wrong input for student cnt try again!");
+            }while (studentCnt<1 || studentCnt > 100);
+
+            int[,] data = new int[studentCnt, 5];
+            
+            for (int i = 0; i < studentCnt; i++)
+            {
+                Console.WriteLine($"Enter the data for student number {i+1}");
+                string input=Console.ReadLine();
+
+                for(int j = 0; j < 5; j++)
+                {
+                    data[i, j] = Convert.ToInt16(input.Split(" ")[j]);
+                }
+
+                if (data[i, 0] >= 1950 && data[i, 0] <= 2000)
+                    i++;
+                else
+                    Console.WriteLine("Wrong input for birth year,try again");
+            }
+
+
+            int springCnt = 0;
+            int summerCnt = 0;
+            int autumnCnt = 0;
+            int winterCnt = 0;
+
+            for(int i = 0; i < studentCnt; i++)
+            {
+                if (data[i, 1] >= 3 && data[i, 1] <= 5)
+                    springCnt++;
+                else if (data[i, 1] >= 6 && data[i, 1] <= 8)
+                    summerCnt++;
+                else if (data[i, 1] >= 9 && data[i, 1] <= 11)
+                    autumnCnt++;
+                else
+                    winterCnt++;
+            }
+
+            Console.WriteLine($"{springCnt}, {summerCnt}, {autumnCnt}, {winterCnt}");
+
+        }
+    }
+}
+
