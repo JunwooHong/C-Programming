@@ -1,0 +1,26 @@
+In:
+cityCnt ∈ N
+tickets[1..cityCnt] ∈ Ticket 
+Ticket = (cityName X Distance X Price)
+cityName ∈ S
+Distance,Price ∈ N
+
+Pre:
+1≤cityCnt≤100
+∀i(1≤ i ≤ cityCnt): 1 ≤ tickets[i].Distance ≤ 20000 and 
+1 ≤ tickets[i].price ≤2000000
+
+Out:
+cost ∈ N 
+farthestCity ∈ S
+maxIndex ∈ N or ∈[1..cityCnt]
+
+Post:
+maxIndex∈[1..cityCnt] and
+∀i ∈ [1.. cityCnt]:(tickets[maxIndex].Distance≥tickets[i].Distance)
+farthestCity=tickets[maxIndex].cityName
+cost = tickets[maxIndex].price
+
+maxIndex = MAX(i=1..cityCnt,tickets[i].Distance)
+farthestCity = tickets[maxIndex].cityName 
+cost = tickets[maxIndex].price
