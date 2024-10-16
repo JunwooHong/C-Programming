@@ -1,0 +1,54 @@
+using System;
+public class Program
+{
+    
+    public struct Ticket
+    {
+        public string cityName;
+        public int distance;
+        public int price;
+    }    
+    
+    public static void Main(string[] args)
+    {
+        int cityCnt;
+        do 
+        {
+            Console.WriteLine("Enter the count of the cities:  ");
+            cityCnt=Convert.ToInt16(Console.ReadLine());
+            
+            if(cityCnt <=0 || cityCnt>100)
+                Console.WriteLine("Wrong input for city number,Try again!");
+                
+        }while(cityCnt<=0 || cityCnt>100)
+        
+        Ticket[] tickets = new Ticket[cityCnt];
+        
+        for(int i=0;i<cityCnt;i++)
+        {
+            Console.WriteLine($"Enter the city name , distance and price for city number{i+1}");
+            string input=Console.ReadLine();
+            tickets[i].cityName  = input.Split(" ")[0];
+            tickets[i].distance  = Convert.ToInt16(input.Split(" ")[1]);
+            tickets[i].price  = Convert.ToInt16(input.Split(" ")[2]);
+            
+            if(tickets[i].distance>=1 && tickets[i].distance<=20000 && tickets[i].price>=1 && tickets[i].price<=2000000)
+                i++;
+            else
+                Console.WriteLine("Wrong input, try again");
+        }
+        int maxIndex = 0;
+        
+        for(int i=1;i<cityCnt;i++)
+        {
+            if(tickets[i].distance > tickets[maxIndex].distance)
+                maxIndex = i;
+        }
+        
+        Console.WriteLine($"The city name with the longest distance is {tickets[maxIndex].cityName} and the price is {tickets[maxIndex].price}")
+        
+        
+        
+        
+    }
+}
