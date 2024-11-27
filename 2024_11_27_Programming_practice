@@ -1,0 +1,164 @@
+namespace g5Lab12
+
+{
+
+    internal class Program
+
+    {
+
+        public struct EmployeeData
+        {
+
+            public int[] salary;
+
+            public int[] month;
+
+            public string[] names;
+
+        }
+
+        static void Main(string[] args)
+
+        {
+
+            /*Console.WriteLine("Hello, World!");*/
+
+            // uniqElements(new int[] { 2, 0,2,0,});
+
+            //  dupliElements(new int[] { 2, 2,2,8});
+
+            Console.Write("Enter the number of records and value for variable C: ");
+
+            string input = Console.ReadLine();
+
+            int records = Convert.ToInt16(input.Split(" ")[0]);
+
+            int c = Convert.ToInt16(input.Split(" ")[1]);
+
+            EmployeeData data = new EmployeeData();
+
+            data.salary = new int[records];
+
+            data.month = new int[records];
+
+            data.names = new string[records];
+
+            readData(data);
+
+            maxSalary(data);
+
+            Console.WriteLine("#");
+
+        }
+
+        public static EmployeeData readData(EmployeeData data)
+        {
+
+            for (int i = 0; i < data.salary.Length; i++)
+
+            {
+                Console.Write("Enter the salary, month and Name for employee number {0}: ", i + 1);
+
+                string input = Console.ReadLine();
+
+                data.salary[i] = Convert.ToInt16(input.Split(" ")[0]);
+
+                data.month[i] = Convert.ToInt16(input.Split(" ")[1]);
+
+                data.names[i] = input.Split(" ")[2] + " " + input.Split(" ")[3];
+
+            }
+
+            return data;
+
+        }
+
+        public static void maxSalary(EmployeeData data)
+
+        {
+
+            int maxIndex = 0;
+
+            for (int i = 0; i < data.salary.Length; i++)
+
+            {
+
+                if (data.salary[i] > data.salary[maxIndex])
+
+                    maxIndex = i;
+
+            }
+
+            Console.WriteLine($"The name of the employee with the highest salary is {data.names[maxIndex]}");
+
+        }
+
+        //public static void uniqElements(int[] nums)
+
+        //{
+
+        //    int[] uniqNums = new int[nums.Length]; 
+
+        //    int cnt = 0; 
+
+        //    for(int i = 0; i < nums.Length; i++)
+
+        //    {
+
+        //        int j = 0; 
+
+        //        while (j<i && nums[j] != nums[i]) //Decesion PoA 
+
+        //            j++;
+
+        //        if (j == i)
+
+        //        {
+
+        //            uniqNums[cnt] = nums[i];  //Multi Item Selection PoA (counting included)
+
+        //            cnt++;
+
+        //        }
+
+        //    }
+
+        //    Console.WriteLine("The count of unique numbers is: {0}",cnt);
+
+        //    for(int i=0;i<cnt;i++)
+
+        //        Console.Write($"{uniqNums[i],4}");
+
+        //}
+
+        //public static void dupliElements(int[] nums)
+
+        //{
+
+        //    int cnt = 0; //Counting PoA
+
+        //    for (int i = 0; i < nums.Length; i++)
+
+        //    {
+
+        //        int j = 0;
+
+        //        while (j < i && nums[j] != nums[i]) //Decesion PoA 
+
+        //            j++;
+
+        //        if (j < i)
+
+        //            cnt++;
+
+        //    }
+
+        //    Console.WriteLine("The count of duplicate numbers is: {0}", cnt);
+
+        //}
+
+    }
+
+}
+
+
